@@ -102,7 +102,7 @@
     <main class="flex justify-between gap-5">
       <section class="patients">
         <div class="head flex items-center justify-between">
-          <h2 class="font-24 font-extra-bold">Patients</h2>
+          <h2 class="section-heading">Patients</h2>
           <button class="search">
             <img src="assets/search.svg" alt="search-icon" />
           </button>
@@ -111,16 +111,14 @@
       </section>
       <section class="middle flex flex-col gap-5">
         <div class="diagnosis-history flex flex-col gap-5">
-          <h2 class="title font-24 font-extra-bold">Diagnosis History</h2>
+          <h2 class="section-heading">Diagnosis History</h2>
           <div class="blood-pressure-card flex justify-between gap-3">
             <div class="left">
               <div class="head flex items-center justify-between">
                 <h3 class="font-18 font-bold">Blood Pressure</h3>
                 <select class="font-regular font-14" name="" id="">
-                  <option value="7 days">Last 7 Days</option>
-                  <option value="30 days">Last 30 Days</option>
-                  <option value="90 days">Last 90 Days</option>
                   <option value="6 months">Last 6 months</option>
+                  <option value="12 months">Last 12 months</option>
                 </select>
               </div>
               <div class="blood-pressure-chart">
@@ -180,6 +178,10 @@
             </div>
           </div>
         </div>
+
+        <div class="diagnosis-list flex flex-col gap-5">
+          <h2 class="section-heading">Diagnosis List</h2>
+        </div>
       </section>
       <section class="patient-details">
         <div class="patient-info flex flex-col items-center gap-1">
@@ -189,10 +191,12 @@
               alt="Jessica Taylor"
             />
           </div>
-          <h2 class="font-24 font-extra-bold">Jessica Taylor</h2>
+          <h2 class="section-heading">Jessica Taylor</h2>
           <div class="details flex flex-col gap-4">
             <div class="info-line flex items-center gap-3">
-              <div class="icon-container flex items-center justify-center"><img src="assets/calender.svg" alt="dob" /></div>
+              <div class="icon-container flex items-center justify-center">
+                <img src="assets/calender.svg" alt="dob" />
+              </div>
               <div class="flex flex-col gap-2">
                 <p class="title font-14 font-medium">Date of Birth</p>
                 <p class="value font-14 font-bold">August 23, 1996</p>
@@ -200,7 +204,9 @@
             </div>
 
             <div class="info-line flex items-center gap-3">
-              <div class="icon-container flex items-center justify-center"><img src="assets/FemaleIcon.svg" alt="gender" /></div>
+              <div class="icon-container flex items-center justify-center">
+                <img src="assets/FemaleIcon.svg" alt="gender" />
+              </div>
               <div class="flex flex-col gap-2">
                 <p class="title font-14 font-medium">Gender</p>
                 <p class="value font-14 font-bold">Female</p>
@@ -208,7 +214,9 @@
             </div>
 
             <div class="info-line flex items-center gap-3">
-              <div class="icon-container flex items-center justify-center"><img src="assets/PhoneIcon.svg" alt="contact-info" /></div>
+              <div class="icon-container flex items-center justify-center">
+                <img src="assets/PhoneIcon.svg" alt="contact-info" />
+              </div>
               <div class="flex flex-col gap-2">
                 <p class="title font-14 font-medium">Contact Info.</p>
                 <p class="value font-14 font-bold">(415) 555-1234</p>
@@ -216,7 +224,9 @@
             </div>
 
             <div class="info-line flex items-center gap-3">
-              <div class="icon-container flex items-center justify-center"><img src="assets/PhoneIcon.svg" alt="emergency-contact" /></div>
+              <div class="icon-container flex items-center justify-center">
+                <img src="assets/PhoneIcon.svg" alt="emergency-contact" />
+              </div>
               <div class="flex flex-col gap-2">
                 <p class="title font-14 font-medium">Emergency Contacts</p>
                 <p class="value font-14 font-bold">(415) 555-5678</p>
@@ -224,21 +234,20 @@
             </div>
 
             <div class="info-line flex items-center gap-3">
-              <div class="icon-container flex items-center justify-center"><img src="assets/InsuranceIcon.svg" alt="dob" /></div>
+              <div class="icon-container flex items-center justify-center">
+                <img src="assets/InsuranceIcon.svg" alt="dob" />
+              </div>
               <div class="flex flex-col gap-2">
                 <p class="title font-14 font-medium">Insurance Provider</p>
                 <p class="value font-14 font-bold">Sunrise Health Assurance</p>
               </div>
             </div>
           </div>
-          <button>
-            Show All Information
-          </button>
+          <button>Show All Information</button>
         </div>
       </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
-    <script src="mock-patients.js"></script>
   </body>
 </html>

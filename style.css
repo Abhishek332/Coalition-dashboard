@@ -139,6 +139,12 @@ button {
   color: var(--secondary-color);
 }
 
+.section-heading {
+  font-weight: 800;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
 /* ================================= utility End =============================== */
 
 /* ================================= Header start =============================== */
@@ -254,9 +260,10 @@ section.middle {
   scrollbar-width: thin;
 }
 
-.diagnosis-history {
+.diagnosis-history, .diagnosis-list{
   padding: 16px;
   background-color: var(--white);
+  border-radius: 16px;
 }
 
 /* ========================== Blood pressure section start ========================== */
@@ -362,10 +369,6 @@ section.patient-details .patient-info .img-container img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-section.patient-details .patient-info h2 {
-  margin: 20px 0;
 }
 
 section.patient-details .patient-info .details {
