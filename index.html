@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tech Care Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="flex justify-between items-center">
+      <div class="logo"><img src="./assets/TestLogo.svg" alt="logo" /></div>
+      <nav>
+        <ul class="nav-items flex items-center gap-2">
+          <li>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-3 font-14 font-bold"
+            >
+              <img src="assets/home.svg" alt="overview-icon" class="nav-icon" />
+              Overview
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="nav-item active flex items-center gap-2 font-14 font-bold"
+            >
+              <img
+                src="assets/group.svg"
+                alt="patients-icon"
+                class="nav-icon"
+              />
+              Patients
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-2 font-14 font-bold"
+            >
+              <img
+                src="assets/calender.svg"
+                alt="schedule-icon"
+                class="nav-icon"
+              />
+              Schedule
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-2 font-14 font-bold"
+            >
+              <img
+                src="assets/message.svg"
+                alt="message-icon"
+                class="nav-icon"
+              />
+              Message
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              class="nav-item flex items-center gap-2 font-14 font-bold"
+            >
+              <img
+                src="assets/credit_card.svg"
+                alt="transactions-icon"
+                class="nav-icon"
+              />
+              Transactions
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="right-container flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <div class="profile-container">
+            <img src="assets/doctors/1.png" alt="Dr. Jose Simmons" />
+          </div>
+        </div>
+        <div class="flex flex-col font-14">
+          <h4 class="font-bold">Dr. Jose Simmons</h4>
+          <p class="font-regular text-secondary">General Practitioner</p>
+        </div>
+        <div class="divider"></div>
+        <button><img src="assets/setting.svg" alt="setting-icon" /></button>
+        <button>
+          <img src="assets/more-vertical.svg" alt="more-vertical" />
+        </button>
+      </div>
+    </header>
+
+    <!-- main section -->
+    <main class="flex justify-between gap-5">
+      <section class="patients">
+        <div class="head flex items-center justify-between">
+          <h2 class="font-24 font-extra-bold">Patients</h2>
+          <button class="search">
+            <img src="assets/search.svg" alt="search-icon" />
+          </button>
+        </div>
+        <div id="patients-list"></div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="mock-patients.js"></script>
+  </body>
+</html>
