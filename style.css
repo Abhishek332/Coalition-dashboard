@@ -5,10 +5,10 @@
   --nav-item-active: #01f0d0;
   --nav-item-hover: #01f0d025;
   --white: #fff;
-  --blood-pressure-card: #F4F0FE;
-  --respiratory-card: #E0F3FA;
-  --temperature-card: #FFE6E9;
-  --heart-rate-card: #FFE6F1;
+  --blood-pressure-card: #f4f0fe;
+  --respiratory-card: #e0f3fa;
+  --temperature-card: #ffe6e9;
+  --heart-rate-card: #ffe6f1;
 }
 
 * {
@@ -210,12 +210,12 @@ main {
 
 main section {
   border-radius: 16px;
-  background: var(--white);
 }
 
 /* ======================= patients list section start ======================= */
 section.patients {
   flex: 0.225;
+  background: var(--white);
 }
 
 section.patients .head {
@@ -226,11 +226,6 @@ section.patients #patients-list {
   height: calc(100vh - 210px);
   overflow-y: auto;
   scrollbar-width: thin;
-}
-
-section.patient-details {
-  flex: 0.225;
-  padding: 16px;
 }
 
 .search {
@@ -251,17 +246,16 @@ section.patient-details {
 }
 /* ======================= patients list section end ======================= */
 
-/* ======================= diagnosis history section start ======================= */
+/* ======================= Middle Section start ======================= */
 section.middle {
   flex: 0.55;
-  padding: 16px;
   height: calc(100vh - 140px);
   overflow-y: auto;
   scrollbar-width: thin;
 }
 
 .diagnosis-history {
-  padding : 0px;
+  padding: 16px;
   background-color: var(--white);
 }
 
@@ -269,7 +263,7 @@ section.middle {
 .blood-pressure-card {
   border-radius: 12px;
   padding: 20px;
-  background:var(--blood-pressure-card);
+  background: var(--blood-pressure-card);
 }
 
 .blood-pressure-card .left {
@@ -299,11 +293,11 @@ section.middle {
 }
 
 .blood-pressure-card .info .point:nth-child(1) {
-  background: #C26EB4;
+  background: #c26eb4;
 }
 
 .blood-pressure-card .info .point:nth-child(2) {
-  background: #7E6CAB;
+  background: #7e6cab;
 }
 
 .blood-pressure-chart {
@@ -341,4 +335,48 @@ section.middle {
   background-color: var(--heart-rate-card);
 }
 /* ========================== Vitals section end ========================== */
-/* ======================= diagnosis history section end ======================= */
+/* ======================= Middle Section end ======================= */
+
+/* ======================= Right Section start ======================= */
+section.patient-details {
+  flex: 0.225;
+  height: calc(100vh - 210px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+section.patient-details .patient-info {
+  border-radius: 16px;
+  padding: 30px 16px;
+  background: var(--white);
+}
+
+section.patient-details .patient-info .img-container {
+  height: 200px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+section.patient-details .patient-info .img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+section.patient-details .patient-info h2 {
+  margin: 20px 0;
+}
+
+section.patient-details .patient-info .details {
+  width: 100%;
+}
+
+section.patient-details .patient-info .info-line .icon-container {
+  height: 42px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--body-background);
+}
+
+/* ======================= Right Section end ======================= */
