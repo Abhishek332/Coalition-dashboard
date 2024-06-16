@@ -267,11 +267,11 @@ section.middle {
 }
 
 .blood-pressure-card .left {
-  flex: 0.65;
+  flex: 0.7;
 }
 
 .blood-pressure-card .right {
-  flex: 0.35;
+  flex: 0.3;
 }
 
 .blood-pressure-card .left .head {
@@ -340,14 +340,14 @@ section.middle {
 /* ======================= Right Section start ======================= */
 section.patient-details {
   flex: 0.225;
-  height: calc(100vh - 210px);
+  height: calc(100vh - 140px);
   overflow-y: auto;
   scrollbar-width: thin;
 }
 
 section.patient-details .patient-info {
   border-radius: 16px;
-  padding: 30px 16px;
+  padding: 24px 16px;
   background: var(--white);
 }
 
@@ -377,6 +377,14 @@ section.patient-details .patient-info .info-line .icon-container {
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: var(--body-background);
+}
+
+section.patient-details .patient-info button {
+  height: 41px;
+  width: 220px;
+  border-radius: 41px;
+  background: var(--nav-item-active);
+  margin-top: 20px;
 }
 
 /* ======================= Right Section end ======================= */
