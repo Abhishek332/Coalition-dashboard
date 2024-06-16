@@ -109,8 +109,81 @@
         </div>
         <div id="patients-list"></div>
       </section>
+      <section class="middle flex flex-col">
+        <div class="diagnosis-history flex flex-col gap-5">
+          <h2 class="title font-24 font-extra-bold">Diagnosis History</h2>
+          <div class="blood-pressure-card flex justify-between gap-3">
+            <div class="left">
+              <div class="head flex items-center justify-between">
+                <h3 class="font-18 font-bold">Blood Pressure</h3>
+                <select class="font-regular font-14" name="" id="">
+                  <option value="7 days">Last 7 Days</option>
+                  <option value="30 days">Last 30 Days</option>
+                  <option value="90 days">Last 90 Days</option>
+                  <option value="6 months">Last 6 months</option>
+                </select>
+              </div>
+              <div class="blood-pressure-chart">
+                <canvas id="bloodPressureChart"></canvas>
+              </div>
+            </div>
+            <div class="right flex flex-col gap-5">
+              <div class="info flex flex-col gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="point"></div>
+                  <h3 class="font-14 font-bold">Systolic</h3>
+                </div>
+                <p class="font-22 font-bold">160</p>
+                <span class="font-14 font-regular flex items-center gap-2"
+                  ><img src="assets/ArrowUp.svg" alt="arrow-up" /> Higher than
+                  Average</span
+                >
+              </div>
+              <hr />
+              <div class="info flex flex-col gap-4">
+                <div class="flex items-center gap-2">
+                  <div class="point"></div>
+                  <h3 class="font-14 font-bold">Diastolic</h3>
+                </div>
+                <p class="font-22 font-bold">78</p>
+                <span class="font-14 font-regular flex items-center gap-2"
+                  ><img src="assets/ArrowDown.svg" alt="arrow-up" /> Lower than
+                  Average</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="vitals flex items-center justify-between gap-5">
+            <div class="vital flex flex-col items-start justify-between gap-3">
+              <img src="assets/respiratory rate.svg" alt="respiratory-rate" />
+              <div class="flex flex-col items-start gap-1">
+                <p class="font-16 font-medium">Respiratory Rate</p>
+                <p class="font-30 font-extra-bold">20 bpm</p>
+              </div>
+              <p class="font-14 font-regular">Normal</p>
+            </div>
+            <div class="vital flex flex-col items-start justify-between gap-3">
+              <img src="assets/respiratory rate.svg" alt="respiratory-rate" />
+              <div class="flex flex-col items-start gap-1">
+                <p class="font-16 font-medium">Temperature</p>
+                <p class="font-30 font-extra-bold">98.6°F</p>
+              </div>
+              <p class="font-14 font-regular">Normal</p>
+            </div>
+            <div class="vital flex flex-col items-start justify-between gap-3">
+              <img src="assets/respiratory rate.svg" alt="respiratory-rate" />
+              <div class="flex flex-col items-start gap-1">
+                <p class="font-16 font-medium">Heart Rate</p>
+                <p class="font-30 font-extra-bold">78 bpm</p>
+              </div>
+              <p class="font-14 font-regular">Lower than Average</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
     <script src="mock-patients.js"></script>
   </body>
 </html>
