@@ -16,6 +16,7 @@
   padding: 0;
   box-sizing: border-box;
   color: var(--primary-color);
+  scrollbar-width: thin;
 }
 
 body {
@@ -236,7 +237,6 @@ section.start .head {
 section.start #patients-list {
   height: calc(100vh - 210px);
   overflow-y: auto;
-  scrollbar-width: thin;
 }
 
 .search {
@@ -269,7 +269,6 @@ section.middle {
   flex: 0.55;
   height: calc(100vh - 120px);
   overflow-y: auto;
-  scrollbar-width: thin;
 }
 
 #diagnosis-history,
@@ -401,7 +400,6 @@ td {
   display: block;
   height: 200px;
   overflow-y: scroll;
-  scrollbar-width: thin;
 }
 
 #diagnostic-list table tbody td {
@@ -421,7 +419,6 @@ section.end {
   flex: 0.225;
   height: calc(100vh - 120px);
   overflow-y: auto;
-  scrollbar-width: thin;
 }
 
 /* ======================== patient info styles start ======================== */
@@ -475,7 +472,6 @@ section.end #lab-results {
 #lab-result-list {
   max-height: 200px;
   overflow-y: auto;
-  scrollbar-width: thin;
 }
 
 #lab-result-list div {
