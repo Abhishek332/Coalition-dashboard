@@ -1,5 +1,6 @@
 import {
   DEFAULT_DIAGNOSIS_HISTORY,
+  LEVELS_ICONS,
   STATUS_TYPE,
   VITALS_STATIC_DATA,
 } from './app.constants.js';
@@ -76,10 +77,11 @@ function selectPatient(patients, index) {
 function renderPatientDiagnosisHistory(patient) {
   //last 6 months
   const diagnosisHistory = patient.diagnosis_history.slice(0, 6).reverse();
-console.log(diagnosisHistory)
+  console.log(diagnosisHistory);
   const averageDiagnosisForInterval = getAverageDiagnosis(diagnosisHistory);
 
   renderBloodPressureChart(diagnosisHistory);
+  renderSystolicAndDiastolic(averageDiagnosisForInterval);
   renderVitals(averageDiagnosisForInterval);
 }
 
@@ -201,17 +203,22 @@ function renderBloodPressureChart(diagnosisHistory) {
     .getElementById('bloodPressureChart')
     .getContext('2d');
 
-    // creating map to reduce redundant iterations
-  const diagnosisMap = diagnosisHistory.reduce((currentMap, diagnosis) =>{
-    currentMap.labels.push(`${diagnosis.month.slice(0,3)} ${diagnosis.year}`);
-    currentMap.systolic.push(diagnosis.blood_pressure.systolic.value);
-    currentMap.diastolic.push(diagnosis.blood_pressure.diastolic.value);
-    return currentMap;
-  }, {
-    labels: [],
-    systolic: [],
-    diastolic: [],
-  });
+  // creating map to reduce redundant iterations
+  const diagnosisMap = diagnosisHistory.reduce(
+    (currentMap, diagnosis) => {
+      currentMap.labels.push(
+        `${diagnosis.month.slice(0, 3)} ${diagnosis.year}`
+      );
+      currentMap.systolic.push(diagnosis.blood_pressure.systolic.value);
+      currentMap.diastolic.push(diagnosis.blood_pressure.diastolic.value);
+      return currentMap;
+    },
+    {
+      labels: [],
+      systolic: [],
+      diastolic: [],
+    }
+  );
 
   const bloodPressureChart = new Chart(bloodPressureChartContainer, {
     type: 'line',
@@ -254,4 +261,37 @@ function renderBloodPressureChart(diagnosisHistory) {
       },
     },
   });
+}
+
+function renderSystolicAndDiastolic(averageData) {
+  const systolicAndDiastolicContainer = document.querySelector(
+    '.blood-pressure-card > .right'
+  );
+  let systolicAndDiastolicHtml = `
+    <div class="info flex flex-col gap-4">
+      <div class="flex items-center gap-2">
+        <div class="point"></div>
+          <h3 class="font-14 font-bold">Systolic</h3>
+        </div>
+        <p class="font-22 font-bold">${averageData.systolic.value}</p>
+        <span class="font-14 font-regular flex items-center gap-2">${
+          LEVELS_ICONS[averageData.systolic.levels]
+        }${averageData.systolic.levels}</span>
+      </div>
+    </div>
+    <hr />
+    <div class="info flex flex-col gap-4">
+      <div class="flex items-center gap-2">
+        <div class="point"></div>
+          <h3 class="font-14 font-bold">Diastolic</h3>
+        </div>
+        <p class="font-22 font-bold">${averageData.diastolic.value}</p>
+        <span class="font-14 font-regular flex items-center gap-2">${
+          LEVELS_ICONS[averageData.diastolic.levels]
+        }${averageData.diastolic.levels}</span>
+      </div>
+    </div>
+  `;
+
+  systolicAndDiastolicContainer.innerHTML = systolicAndDiastolicHtml;
 }

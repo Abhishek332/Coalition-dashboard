@@ -8,7 +8,7 @@ export const VITALS = {
   RESPIRATORY_RATE: 'respiratory_rate',
   TEMPERATURE: 'temperature',
   HEART_RATE: 'heart_rate',
-}
+};
 
 export const VITALS_STATIC_DATA = {
   [VITALS.RESPIRATORY_RATE]: {
@@ -26,7 +26,7 @@ export const VITALS_STATIC_DATA = {
     icon: 'assets/HeartBPM.svg',
     unit: ' bpm',
   },
-}
+};
 
 export const DEFAULT_DIAGNOSIS_HISTORY = {
   blood_pressure: {
@@ -71,4 +71,10 @@ export const DEFAULT_DIAGNOSIS_HISTORY = {
       [STATUS_TYPE.HIGHER]: 0,
     },
   },
+};
+
+export const LEVELS_ICONS = {
+  [STATUS_TYPE.NORMAL]: '',
+  [STATUS_TYPE.LOWER]: `<img src="assets/ArrowDown.svg" alt="arrow-up" />`,
+  [STATUS_TYPE.HIGHER]: `<img src="assets/ArrowUp.svg" alt="arrow-up" />`,
 };

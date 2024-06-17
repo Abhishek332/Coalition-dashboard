@@ -271,6 +271,7 @@ section.middle {
   border-radius: 12px;
   padding: 20px;
   background: var(--blood-pressure-card);
+  width: 100%;
 }
 
 .blood-pressure-card .left {
@@ -324,7 +325,8 @@ section.middle {
 }
 
 .vital img {
-  height: 96;
+  max-height: 96;
+  height: 40%;
   aspect-ratio: 1;
   border-radius: 50%;
   object-fit: contain;
