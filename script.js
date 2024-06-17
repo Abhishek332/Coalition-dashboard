@@ -1,42 +1,64 @@
-const ctx = document.getElementById('bloodPressureChart').getContext('2d');
-const bloodPressureChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['Oct 2023', 'Nov 2023', 'Dec 2023', 'Jan 2024', 'Feb 2024', 'Mar 2024'],
-    datasets: [
-      {
-        label: 'Systolic',
-        data: [120, 130, 125, 140, 135, 160],
-        borderColor: '#C26EB4',
-        borderWidth: 2,
-        fill: false,
-      },
-      {
-        label: 'Diastolic',
-        data: [80, 85, 75, 90, 70, 78],
-        borderColor: '#7E6CAB',
-        borderWidth: 2,
-        fill: false,
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    elements: {
-        line: {
-            tension : 0.4  // smooth lines
-        },
-    },
-  },
+import { DEFAULT_DIAGNOSIS_HISTORY, STATUS_TYPE, VITALS_STATIC_DATA } from './app.constants.js';
+
+let selectedPatientIndex = 3;
+
+document.addEventListener('DOMContentLoaded', function () {
+  let username = 'coalition';
+  let password = 'skills-test';
+  let auth = window.btoa(`${username}:${password}`);
+
+  fetchPatientsData(auth).then((patients) => {
+    renderPatientsList(patients);
+  });
 });
+
+async function fetchPatientsData(auth) {
+  try {
+    const response = await fetch(
+      'https://fedskillstest.coalitiontechnologies.workers.dev',
+      {
+        headers: {
+          Authorization: `Basic ${auth}`,
+        },
+      }
+    );
+    const patients = await response.json();
+
+    return patients;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function renderPatientsList(patients) {
+  const patientListContainer = document.getElementById('patients-list');
+
+  let patientTiles = '';
+
+  patients.forEach((patient, index) => {
+    patientTiles += `
+  <div
+  class="patient flex items-center justify-between ${
+    index === selectedPatientIndex ? 'selected' : ''
+  }"
+  >
+  <div class="flex items-center gap-2">
+    <div class="profile-container">
+      <img src="${patient.profile_picture}" alt="${patient.name}" />
+    </div>
+    <div class="flex flex-col font-14">
+      <h4 class="font-bold">${patient.name}</h4>
+      <p class="font-regular text-secondary">
+        ${patient.gender} ${patient.age}
+      </p>
+    </div>
+  </div>
+  <button onclick="selectPatient(${patients},${index})">
+    <img src="assets/more-horizontal.svg" alt="more-horizontal" />
+  </button>
+</div>
+  `;
+  });
+
+  patientListContainer.innerHTML = patientTiles;
+}
