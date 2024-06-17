@@ -125,14 +125,23 @@
                 <canvas id="bloodPressureChart"></canvas>
               </div>
             </div>
-            <div class="right flex flex-col gap-5">
-            </div>
+            <div class="right flex flex-col gap-5"></div>
           </div>
-          <div id="vitals" class="flex items-center justify-between gap-5" />
+          <div id="vitals" class="flex items-center justify-between gap-5"></div>
         </div>
 
-        <div class="diagnosis-list flex flex-col gap-5">
-          <h2 class="section-heading">Diagnosis List</h2>
+        <div id="diagnostic-list" class="flex flex-col gap-5">
+          <h2 class="section-heading">Diagnostic List</h2>
+          <table id="diagnostic-list-table">
+            <thead>
+              <tr>
+                <th>Problem/Diagnosis</th>
+                <th>Description</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
       </section>
       <section class="patient-details">

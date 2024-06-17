@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
   fetchPatientsData(auth).then((patients) => {
     renderPatientsList(patients);
     renderPatientDiagnosisHistory(patients[selectedPatientIndex]);
+    renderPatientDiagnosisList(patients[selectedPatientIndex]);
   });
 });
 
@@ -77,7 +78,6 @@ function selectPatient(patients, index) {
 function renderPatientDiagnosisHistory(patient) {
   //last 6 months
   const diagnosisHistory = patient.diagnosis_history.slice(0, 6).reverse();
-  console.log(diagnosisHistory);
   const averageDiagnosisForInterval = getAverageDiagnosis(diagnosisHistory);
 
   renderBloodPressureChart(diagnosisHistory);
@@ -294,4 +294,21 @@ function renderSystolicAndDiastolic(averageData) {
   `;
 
   systolicAndDiastolicContainer.innerHTML = systolicAndDiastolicHtml;
+}
+
+function renderPatientDiagnosisList(patient) {
+  const diagnosticListTableBody = document.querySelector('#diagnostic-list-table tbody');
+  let diagnosticListHtml = ``;
+
+  patient.diagnostic_list.map((diagnostic) => {
+    diagnosticListHtml += `
+      <tr>
+        <td>${diagnostic.name}</td>
+        <td>${diagnostic.description}</td>
+        <td>${diagnostic.status}</td>
+      </tr>
+    `;
+  });
+
+  diagnosticListTableBody.innerHTML = diagnosticListHtml;
 }

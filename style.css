@@ -214,14 +214,11 @@ main {
   margin-top: 30px;
 }
 
-main section {
-  border-radius: 16px;
-}
-
 /* ======================= patients list section start ======================= */
 section.patients {
   flex: 0.225;
   background: var(--white);
+  border-radius: 16px;
 }
 
 section.patients .head {
@@ -260,10 +257,12 @@ section.middle {
   scrollbar-width: thin;
 }
 
-#diagnosis-history, .diagnosis-list{
+#diagnosis-history,
+#diagnostic-list {
   padding: 16px;
   background-color: var(--white);
   border-radius: 16px;
+  border: '1px solid red';
 }
 
 /* ========================== Blood pressure section start ========================== */
@@ -344,6 +343,44 @@ section.middle {
   background-color: var(--heart-rate-card);
 }
 /* ========================== Vitals section end ========================== */
+
+/* ========================== Diagnostic list section start ========================== */
+
+#diagnostic-list {
+  padding-bottom: 5px;
+}
+
+#diagnostic-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#diagnostic-list table th,
+td {
+  text-align: left;
+  padding: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#diagnostic-list table tbody td {
+  border-bottom: 1px solid var(--body-background);
+  font-weight: 400;
+}
+
+#diagnostic-list table thead tr {
+  background-color: var(--body-background);
+}
+
+#diagnostic-list table thead th:first-child {
+  border-radius: 24px 0 0 24px;
+}
+
+#diagnostic-list table thead th:last-child {
+  border-radius: 0 24px 24px 0;
+}
+
+/* ========================== Diagnostic list section end ========================== */
 /* ======================= Middle Section end ======================= */
 
 /* ======================= Right Section start ======================= */
