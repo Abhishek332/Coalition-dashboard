@@ -1,4 +1,8 @@
-import { DEFAULT_DIAGNOSIS_HISTORY, STATUS_TYPE, VITALS_STATIC_DATA } from './app.constants.js';
+import {
+  DEFAULT_DIAGNOSIS_HISTORY,
+  STATUS_TYPE,
+  VITALS_STATIC_DATA,
+} from './app.constants.js';
 
 let selectedPatientIndex = 3;
 
@@ -70,18 +74,16 @@ function selectPatient(patients, index) {
 }
 
 function renderPatientDiagnosisHistory(patient) {
-  const averageDiagnosisForInterval = getAverageDiagnosis(patient, 6);
+  //last 6 months
+  const diagnosisHistory = patient.diagnosis_history.slice(0, 6).reverse();
+console.log(diagnosisHistory)
+  const averageDiagnosisForInterval = getAverageDiagnosis(diagnosisHistory);
 
+  renderBloodPressureChart(diagnosisHistory);
   renderVitals(averageDiagnosisForInterval);
-
-  console.log(averageDiagnosisForInterval);
 }
 
-//get average of last 6 months
-function getAverageDiagnosis(patient, months) {
-  //last 6 months
-  const diagnosisHistory = patient.diagnosis_history.slice(0, months);
-
+function getAverageDiagnosis(diagnosisHistory) {
   const averageDiagnosisCalculation = { ...DEFAULT_DIAGNOSIS_HISTORY };
 
   diagnosisHistory.forEach((diagnosis) => {
@@ -174,13 +176,11 @@ function chooseLevelToShow(levelsData) {
   }
 }
 
-function renderVitals (data){
+function renderVitals(data) {
   const vitalContainer = document.getElementById('vitals');
   let vitalsHtml = '';
 
-  for(const [vitalKey, vital] of Object.entries(VITALS_STATIC_DATA)){
-    console.log(data[vitalKey]);
-
+  for (const [vitalKey, vital] of Object.entries(VITALS_STATIC_DATA)) {
     vitalsHtml += `
       <div class="vital flex flex-col items-start justify-between gap-3">
         <img src="${vital.icon}" alt="respiratory-rate" />
@@ -190,8 +190,68 @@ function renderVitals (data){
         </div>
         <p class="font-14 font-regular">${data[vitalKey].levels}</p>
       </div>
-    `
+    `;
   }
 
   vitalContainer.innerHTML = vitalsHtml;
+}
+
+function renderBloodPressureChart(diagnosisHistory) {
+  const bloodPressureChartContainer = document
+    .getElementById('bloodPressureChart')
+    .getContext('2d');
+
+    // creating map to reduce redundant iterations
+  const diagnosisMap = diagnosisHistory.reduce((currentMap, diagnosis) =>{
+    currentMap.labels.push(`${diagnosis.month.slice(0,3)} ${diagnosis.year}`);
+    currentMap.systolic.push(diagnosis.blood_pressure.systolic.value);
+    currentMap.diastolic.push(diagnosis.blood_pressure.diastolic.value);
+    return currentMap;
+  }, {
+    labels: [],
+    systolic: [],
+    diastolic: [],
+  });
+
+  const bloodPressureChart = new Chart(bloodPressureChartContainer, {
+    type: 'line',
+    data: {
+      labels: diagnosisMap.labels,
+      datasets: [
+        {
+          label: 'Systolic',
+          data: diagnosisMap.systolic,
+          borderColor: '#C26EB4',
+          borderWidth: 2,
+          fill: false,
+        },
+        {
+          label: 'Diastolic',
+          data: diagnosisMap.diastolic,
+          borderColor: '#7E6CAB',
+          borderWidth: 2,
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      elements: {
+        line: {
+          tension: 0.4, // smooth lines
+        },
+      },
+    },
+  });
 }
