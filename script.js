@@ -18,18 +18,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
   fetchPatientsData(auth).then((patientsData) => {
     patients = patientsData;
-
-    renderPatientsList(patients);
-    renderPatientDiagnosisHistory(patients[selectedPatientIndex]);
-    renderPatientDiagnosisList(patients[selectedPatientIndex]);
-    renderPatientInfo(patients[selectedPatientIndex]);
-    renderLabResults(patients[selectedPatientIndex]);
+    renderData();
   });
 });
 
 document
   .getElementById('monthSelector')
   .addEventListener('change', updateMonthInterval);
+
+function renderData() {
+  const selectedPatient = patients[selectedPatientIndex];
+
+  renderPatientsList(patients);
+  renderPatientDiagnosisHistory(selectedPatient);
+  renderPatientDiagnosisList(selectedPatient);
+  renderPatientInfo(selectedPatient);
+  renderLabResults(selectedPatient);
+}
 
 function updateMonthInterval(event) {
   const months = parseInt(event.target.value ?? 6);
@@ -86,14 +91,6 @@ function renderPatientsList(patients) {
   });
 
   patientListContainer.innerHTML = patientTiles;
-}
-
-function selectPatient(patients, index) {
-  selectedPatientIndex = index;
-  renderPatientDiagnosisHistory(patients[selectedPatientIndex]);
-  renderPatientDiagnosisList(patients[selectedPatientIndex]);
-  renderPatientInfo(patients[selectedPatientIndex]);
-  renderLabResults(patients[selectedPatientIndex]);
 }
 
 function filterLastMonths(data, months) {
@@ -366,11 +363,19 @@ function renderPatientInfo(patient) {
                 return `
                   <div class="info-line flex items-center gap-3">
                     <div class="icon-container flex items-center justify-center">
-                      <img src="${PATIENT_INFO_STATIC_DATA[key].icon}" alt="${PATIENT_INFO_STATIC_DATA[key].heading}" />
+                      <img src="${PATIENT_INFO_STATIC_DATA[key].icon}" alt="${
+                  PATIENT_INFO_STATIC_DATA[key].heading
+                }" />
                     </div>
                     <div class="flex flex-col gap-2">
-                      <p class="title font-14 font-medium">${PATIENT_INFO_STATIC_DATA[key].heading}</p>
-                      <p class="value font-14 font-bold">${key === PATIENT_INFO_KEYS.DOB ? formattedDate(patient[key]) : patient[key]}</p>
+                      <p class="title font-14 font-medium">${
+                        PATIENT_INFO_STATIC_DATA[key].heading
+                      }</p>
+                      <p class="value font-14 font-bold">${
+                        key === PATIENT_INFO_KEYS.DOB
+                          ? formattedDate(patient[key])
+                          : patient[key]
+                      }</p>
                     </div>
                   </div>
                 `;
