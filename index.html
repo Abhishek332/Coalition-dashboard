@@ -107,10 +107,10 @@
             <img src="assets/search.svg" alt="search-icon" />
           </button>
         </div>
-        <div id="patients-list"></div>
+        <section id="patients-list"></section>
       </section>
       <section class="middle flex flex-col gap-5">
-        <div id="diagnosis-history" class="flex flex-col gap-5">
+        <section id="diagnosis-history" class="flex flex-col gap-5">
           <h2 class="section-heading">Diagnosis History</h2>
           <div class="blood-pressure-card flex justify-between gap-3">
             <div class="left">
@@ -131,9 +131,9 @@
             id="vitals"
             class="flex items-center justify-between gap-5"
           ></div>
-        </div>
+        </section>
 
-        <div id="diagnostic-list" class="flex flex-col gap-5">
+        <section id="diagnostic-list" class="flex flex-col gap-5">
           <h2 class="section-heading">Diagnostic List</h2>
           <table id="diagnostic-list-table">
             <thead>
@@ -145,10 +145,15 @@
             </thead>
             <tbody></tbody>
           </table>
-        </div>
+        </section>
       </section>
-      <section class="end">
-        <div id="patient-info" class="flex flex-col items-center gap-1"></div>
+      <section class="end flex flex-col gap-5">
+        <section id="patient-info" class="flex flex-col items-center gap-1"></section>
+        <section id="lab-results">
+          <h2 class="section-heading">Lab Results</h2>
+          <div id="lab-result-list" class="flex flex-col items-center">
+          </div>
+        </section>
       </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

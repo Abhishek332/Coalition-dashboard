@@ -242,6 +242,7 @@ section.start #patients-list {
 .patient {
   padding: 15px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
 .patient:hover {
@@ -409,6 +410,7 @@ section.end {
   scrollbar-width: thin;
 }
 
+/* ======================== patient info styles start ======================== */
 section.end #patient-info {
   border-radius: 16px;
   padding: 24px 16px;
@@ -447,5 +449,30 @@ section.end #patient-info button {
   background: var(--nav-item-active);
   margin-top: 20px;
 }
+/* ======================== patient info styles end ======================== */
+
+/* ======================== lab result styles start ======================== */
+section.end #lab-results {
+  border-radius: 16px;
+  padding: 16px;
+  background: var(--white);
+}
+
+#lab-result-list {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+#lab-result-list div {
+  width: 100%;
+  padding: 10px 16px;
+  transition: 0.2s;
+}
+
+#lab-result-list div:hover {
+  background: var(--body-background);
+}
+/* ======================== lab result styles end ======================== */
 
 /* ======================= Right Section end ======================= */

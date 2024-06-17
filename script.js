@@ -4,7 +4,7 @@ import {
   PATIENT_INFO_KEYS,
   PATIENT_INFO_STATIC_DATA,
   STATUS_TYPE,
-  VITALS_STATIC_DATA
+  VITALS_STATIC_DATA,
 } from './app.constants.js';
 
 let selectedPatientIndex = 3;
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     renderPatientDiagnosisHistory(patients[selectedPatientIndex]);
     renderPatientDiagnosisList(patients[selectedPatientIndex]);
     renderPatientInfo(patients[selectedPatientIndex]);
+    renderLabResults(patients[selectedPatientIndex]);
   });
 });
 
@@ -75,7 +76,10 @@ function renderPatientsList(patients) {
 
 function selectPatient(patients, index) {
   selectedPatientIndex = index;
-  renderPatientDiagnosisHistory(patients[index]);
+  renderPatientDiagnosisHistory(patients[selectedPatientIndex]);
+  renderPatientDiagnosisList(patients[selectedPatientIndex]);
+  renderPatientInfo(patients[selectedPatientIndex]);
+  renderLabResults(patients[selectedPatientIndex]);
 }
 
 function renderPatientDiagnosisHistory(patient) {
@@ -300,7 +304,7 @@ function renderPatientDiagnosisList(patient) {
   );
   let diagnosticListHtml = ``;
 
-  patient.diagnostic_list.map((diagnostic) => {
+  patient.diagnostic_list.forEach((diagnostic) => {
     diagnosticListHtml += `
       <tr>
         <td>${diagnostic.name}</td>
@@ -326,8 +330,9 @@ function renderPatientInfo(patient) {
           </div>
           <h2 class="section-heading">${patient.name}</h2>
           <div class="details flex flex-col gap-4">
-            ${Object.values(PATIENT_INFO_KEYS).map((key) => {
-              return `
+            ${Object.values(PATIENT_INFO_KEYS)
+              .map((key) => {
+                return `
                   <div class="info-line flex items-center gap-3">
                     <div class="icon-container flex items-center justify-center">
                       <img src="${PATIENT_INFO_STATIC_DATA[key].icon}" alt="${PATIENT_INFO_STATIC_DATA[key].heading}" />
@@ -338,10 +343,28 @@ function renderPatientInfo(patient) {
                     </div>
                   </div>
                 `;
-            }).join('')}
+              })
+              .join('')}
           </div>
           <button>Show All Information</button>
   `;
 
   patientInfoContainer.innerHTML = patientInfoHtml;
+}
+
+function renderLabResults(patient) {
+  const labResultListContainer = document.querySelector('#lab-result-list');
+
+  const labResultListHtml = patient.lab_results
+    .map((labResult) => {
+      return `
+      <div class="flex justify-between items-center">
+        <p class="font-14 font-regular">${labResult}</p>
+        <button><img src="assets/download.svg" alt="download" /></button>
+      </div>
+    `;
+    })
+    .join('');
+
+  labResultListContainer.innerHTML = labResultListHtml;
 }
