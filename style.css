@@ -446,6 +446,10 @@ section.end #patient-info .details {
   width: 100%;
 }
 
+section.end #patient-info .info-line {
+  padding: 6px 2px;
+}
+
 section.end #patient-info .info-line .icon-container {
   height: 42px;
   aspect-ratio: 1;

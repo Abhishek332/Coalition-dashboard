@@ -347,7 +347,6 @@ function renderPatientDiagnosisList(patient) {
 
 function renderPatientInfo(patient) {
   const patientInfoContainer = document.querySelector('#patient-info');
-  console.log(patient);
 
   let patientInfoHtml = `
     <div class="img-container">
