@@ -215,17 +215,17 @@ main {
 }
 
 /* ======================= patients list section start ======================= */
-section.patients {
+section.start {
   flex: 0.225;
   background: var(--white);
   border-radius: 16px;
 }
 
-section.patients .head {
+section.start .head {
   padding: 16px;
 }
 
-section.patients #patients-list {
+section.start #patients-list {
   height: calc(100vh - 210px);
   overflow-y: auto;
   scrollbar-width: thin;
@@ -398,44 +398,44 @@ td {
 /* ======================= Middle Section end ======================= */
 
 /* ======================= Right Section start ======================= */
-section.patient-details {
+section.end {
   flex: 0.225;
   height: calc(100vh - 140px);
   overflow-y: auto;
   scrollbar-width: thin;
 }
 
-section.patient-details .patient-info {
+section.end .patient-info {
   border-radius: 16px;
   padding: 24px 16px;
   background: var(--white);
 }
 
-section.patient-details .patient-info .img-container {
+section.end .patient-info .img-container {
   height: 200px;
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
 }
 
-section.patient-details .patient-info .img-container img {
+section.end .patient-info .img-container img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-section.patient-details .patient-info .details {
+section.end .patient-info .details {
   width: 100%;
 }
 
-section.patient-details .patient-info .info-line .icon-container {
+section.end .patient-info .info-line .icon-container {
   height: 42px;
   aspect-ratio: 1;
   border-radius: 50%;
   background-color: var(--body-background);
 }
 
-section.patient-details .patient-info button {
+section.end .patient-info button {
   height: 41px;
   width: 220px;
   border-radius: 41px;
