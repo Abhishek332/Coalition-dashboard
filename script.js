@@ -82,9 +82,22 @@ function selectPatient(patients, index) {
   renderLabResults(patients[selectedPatientIndex]);
 }
 
+function filterLastMonths(data, months) {
+  const currentDate = new Date();
+  const result = data.filter((item) => {
+    const itemDate = new Date(`${item.month} 1, ${item.year}`);
+    const diffInMonths =
+      (currentDate.getFullYear() - item.year) * 12 +
+      currentDate.getMonth() -
+      itemDate.getMonth();
+    return diffInMonths <= months;
+  });
+  return result;
+}
+
 function renderPatientDiagnosisHistory(patient) {
   //last 6 months
-  const diagnosisHistory = patient.diagnosis_history.slice(0, 6).reverse();
+  const diagnosisHistory = filterLastMonths(patient.diagnosis_history, 6);
   const averageDiagnosisForInterval = getAverageDiagnosis(diagnosisHistory);
 
   renderBloodPressureChart(diagnosisHistory);
