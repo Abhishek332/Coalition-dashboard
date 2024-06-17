@@ -226,9 +226,9 @@ function renderVitals(data) {
       vital.unit
     }</p>
         </div>
-        <p class="font-14 font-regular flex items-center gap-2">${LEVELS_ICONS[data[vitalKey].levels]}${
-      data[vitalKey].levels
-    }</p>
+        <p class="font-14 font-regular flex items-center gap-2">${
+          LEVELS_ICONS[data[vitalKey].levels]
+        }${data[vitalKey].levels}</p>
       </div>
     `;
   }
@@ -370,7 +370,7 @@ function renderPatientInfo(patient) {
                     </div>
                     <div class="flex flex-col gap-2">
                       <p class="title font-14 font-medium">${PATIENT_INFO_STATIC_DATA[key].heading}</p>
-                      <p class="value font-14 font-bold">${patient[key]}</p>
+                      <p class="value font-14 font-bold">${key === PATIENT_INFO_KEYS.DOB ? formattedDate(patient[key]) : patient[key]}</p>
                     </div>
                   </div>
                 `;
@@ -398,4 +398,14 @@ function renderLabResults(patient) {
     .join('');
 
   labResultListContainer.innerHTML = labResultListHtml;
+}
+
+function formattedDate(dateVal) {
+  const date = new Date(dateVal);
+
+  return new Intl.DateTimeFormat('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
 }
