@@ -8,13 +8,17 @@ import {
 } from './app.constants.js';
 
 let selectedPatientIndex = 3;
+let patients = [];
+let bloodPressureChart = null;
 
 document.addEventListener('DOMContentLoaded', function () {
   let username = 'coalition';
   let password = 'skills-test';
   let auth = window.btoa(`${username}:${password}`);
 
-  fetchPatientsData(auth).then((patients) => {
+  fetchPatientsData(auth).then((patientsData) => {
+    patients = patientsData;
+
     renderPatientsList(patients);
     renderPatientDiagnosisHistory(patients[selectedPatientIndex]);
     renderPatientDiagnosisList(patients[selectedPatientIndex]);
@@ -22,6 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
     renderLabResults(patients[selectedPatientIndex]);
   });
 });
+
+document.getElementById('monthSelector').addEventListener('change', updateMonthInterval);
+
+function updateMonthInterval(event) {
+  const months = parseInt(event.target.value ?? 6);
+  bloodPressureChart.destroy();
+  renderPatientDiagnosisHistory(patients[selectedPatientIndex], months);
+}
 
 async function fetchPatientsData(auth) {
   try {
@@ -95,9 +107,9 @@ function filterLastMonths(data, months) {
   return result;
 }
 
-function renderPatientDiagnosisHistory(patient) {
+function renderPatientDiagnosisHistory(patient, months = 6) {
   //last 6 months
-  const diagnosisHistory = filterLastMonths(patient.diagnosis_history, 6);
+  const diagnosisHistory = filterLastMonths(patient.diagnosis_history, months);
   const averageDiagnosisForInterval = getAverageDiagnosis(diagnosisHistory);
 
   renderBloodPressureChart(diagnosisHistory);
@@ -240,7 +252,7 @@ function renderBloodPressureChart(diagnosisHistory) {
     }
   );
 
-  const bloodPressureChart = new Chart(bloodPressureChartContainer, {
+  bloodPressureChart = new Chart(bloodPressureChartContainer, {
     type: 'line',
     data: {
       labels: diagnosisMap.labels,
@@ -294,7 +306,7 @@ function renderSystolicAndDiastolic(averageData) {
         }${averageData.systolic.levels}</span>
       </div>
     </div>
-    <hr />
+    <hr style="background: #CBC8D4" />
     <div class="info flex flex-col gap-4">
       <div class="flex items-center gap-2">
         <div class="point"></div>

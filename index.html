@@ -116,13 +116,13 @@
             <div class="left">
               <div class="head flex items-center justify-between">
                 <h3 class="font-18 font-bold">Blood Pressure</h3>
-                <select class="font-regular font-14" name="" id="">
-                  <option value="6 months">Last 6 months</option>
-                  <option value="12 months">Last 12 months</option>
+                <select id="monthSelector" class="font-regular font-14">
+                  <option value="6">Last 6 months</option>
+                  <option value="12">Last 12 months</option>
                 </select>
               </div>
               <div class="blood-pressure-chart">
-                <canvas id="bloodPressureChart" style="height: 187px;"></canvas>
+                <canvas id="bloodPressureChart" style="height: 187px"></canvas>
               </div>
             </div>
             <div class="right flex flex-col gap-5"></div>
@@ -148,11 +148,13 @@
         </section>
       </section>
       <section class="end flex flex-col gap-5">
-        <section id="patient-info" class="flex flex-col items-center gap-1"></section>
+        <section
+          id="patient-info"
+          class="flex flex-col items-center gap-1"
+        ></section>
         <section id="lab-results">
           <h2 class="section-heading">Lab Results</h2>
-          <div id="lab-result-list" class="flex flex-col items-center">
-          </div>
+          <div id="lab-result-list" class="flex flex-col items-center"></div>
         </section>
       </section>
     </main>
