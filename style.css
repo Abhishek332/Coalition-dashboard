@@ -355,19 +355,7 @@ section.middle {
   border-collapse: collapse;
 }
 
-#diagnostic-list table th,
-td {
-  text-align: left;
-  padding: 20px;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-#diagnostic-list table tbody td {
-  border-bottom: 1px solid var(--body-background);
-  font-weight: 400;
-}
-
+/* styling table head */
 #diagnostic-list table thead tr {
   background-color: var(--body-background);
 }
@@ -378,6 +366,32 @@ td {
 
 #diagnostic-list table thead th:last-child {
   border-radius: 0 24px 24px 0;
+}
+
+#diagnostic-list table th,
+td {
+  text-align: left;
+  padding: 20px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+#diagnostic-list table th:first-child,
+#diagnostic-list table th:last-child,
+#diagnostic-list table td:first-child,
+#diagnostic-list table td:last-child {
+  width: 25%;
+}
+
+#diagnostic-list table tbody {
+  height: 200px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+#diagnostic-list table tbody td {
+  border-bottom: 1px solid var(--body-background);
+  font-weight: 400;
 }
 
 /* ========================== Diagnostic list section end ========================== */
