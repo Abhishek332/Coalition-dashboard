@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-document.getElementById('monthSelector').addEventListener('change', updateMonthInterval);
+document
+  .getElementById('monthSelector')
+  .addEventListener('change', updateMonthInterval);
 
 function updateMonthInterval(event) {
   const months = parseInt(event.target.value ?? 6);
@@ -220,9 +222,13 @@ function renderVitals(data) {
         <img src="${vital.icon}" alt="respiratory-rate" />
         <div class="flex flex-col items-start gap-1">
           <p class="font-16 font-medium">${vital.heading}</p>
-          <p class="font-30 font-extra-bold">${data[vitalKey].value}${vital.unit}</p>
+          <p class="font-30 font-extra-bold">${data[vitalKey].value}${
+      vital.unit
+    }</p>
         </div>
-        <p class="font-14 font-regular">${data[vitalKey].levels}</p>
+        <p class="font-14 font-regular flex items-center gap-2">${LEVELS_ICONS[data[vitalKey].levels]}${
+      data[vitalKey].levels
+    }</p>
       </div>
     `;
   }
