@@ -1,8 +1,10 @@
 import {
   DEFAULT_DIAGNOSIS_HISTORY,
   LEVELS_ICONS,
+  PATIENT_INFO_KEYS,
+  PATIENT_INFO_STATIC_DATA,
   STATUS_TYPE,
-  VITALS_STATIC_DATA,
+  VITALS_STATIC_DATA
 } from './app.constants.js';
 
 let selectedPatientIndex = 3;
@@ -16,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     renderPatientsList(patients);
     renderPatientDiagnosisHistory(patients[selectedPatientIndex]);
     renderPatientDiagnosisList(patients[selectedPatientIndex]);
+    renderPatientInfo(patients[selectedPatientIndex]);
   });
 });
 
@@ -297,7 +300,9 @@ function renderSystolicAndDiastolic(averageData) {
 }
 
 function renderPatientDiagnosisList(patient) {
-  const diagnosticListTableBody = document.querySelector('#diagnostic-list-table tbody');
+  const diagnosticListTableBody = document.querySelector(
+    '#diagnostic-list-table tbody'
+  );
   let diagnosticListHtml = ``;
 
   patient.diagnostic_list.map((diagnostic) => {
@@ -311,4 +316,37 @@ function renderPatientDiagnosisList(patient) {
   });
 
   diagnosticListTableBody.innerHTML = diagnosticListHtml;
+}
+
+function renderPatientInfo(patient) {
+  const patientInfoContainer = document.querySelector('#patient-info');
+  console.log(patient);
+
+  let patientInfoHtml = `
+    <div class="img-container">
+            <img
+              src="${patient.profile_picture}"
+              alt="${patient.name}"
+            />
+          </div>
+          <h2 class="section-heading">${patient.name}</h2>
+          <div class="details flex flex-col gap-4">
+            ${Object.values(PATIENT_INFO_KEYS).map((key) => {
+              return `
+                  <div class="info-line flex items-center gap-3">
+                    <div class="icon-container flex items-center justify-center">
+                      <img src="${PATIENT_INFO_STATIC_DATA[key].icon}" alt="${PATIENT_INFO_STATIC_DATA[key].heading}" />
+                    </div>
+                    <div class="flex flex-col gap-2">
+                      <p class="title font-14 font-medium">${PATIENT_INFO_STATIC_DATA[key].heading}</p>
+                      <p class="value font-14 font-bold">${patient[key]}</p>
+                    </div>
+                  </div>
+                `;
+            }).join('')}
+          </div>
+          <button>Show All Information</button>
+  `;
+
+  patientInfoContainer.innerHTML = patientInfoHtml;
 }

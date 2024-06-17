@@ -420,6 +420,7 @@ section.end #patient-info .img-container {
   aspect-ratio: 1;
   border-radius: 50%;
   overflow: hidden;
+  margin: 20px;
 }
 
 section.end #patient-info .img-container img {

@@ -78,3 +78,34 @@ export const LEVELS_ICONS = {
   [STATUS_TYPE.LOWER]: `<img src="assets/ArrowDown.svg" alt="arrow-up" />`,
   [STATUS_TYPE.HIGHER]: `<img src="assets/ArrowUp.svg" alt="arrow-up" />`,
 };
+
+export const PATIENT_INFO_KEYS = {
+  DOB: 'date_of_birth',
+  GENDER: 'gender',
+  CONTACT_INFO: 'phone_number',
+  EMERGENCY_CONTACT: 'emergency_contact',
+  INSURANCE_PROVIDER: 'insurance_type',
+};
+
+export const PATIENT_INFO_STATIC_DATA = {
+  [PATIENT_INFO_KEYS.DOB]: {
+    heading: 'Date of Birth',
+    icon: 'assets/calender.svg',
+  },
+  [PATIENT_INFO_KEYS.GENDER]: {
+    heading: 'Gender',
+    icon: 'assets/FemaleIcon.svg',
+  },
+  [PATIENT_INFO_KEYS.CONTACT_INFO]: {
+    heading: 'Contact Info',
+    icon: 'assets/PhoneIcon.svg',
+  },
+  [PATIENT_INFO_KEYS.EMERGENCY_CONTACT]: {
+    heading: 'Emergency Contact',
+    icon: 'assets/PhoneIcon.svg',
+  },
+  [PATIENT_INFO_KEYS.INSURANCE_PROVIDER]: {
+    heading: 'Insurance Provider',
+    icon: 'assets/InsuranceIcon.svg',
+  },
+};
